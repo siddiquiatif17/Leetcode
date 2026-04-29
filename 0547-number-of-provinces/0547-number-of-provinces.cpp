@@ -13,7 +13,7 @@ public:
         vector<vector<int>> graph(n);
 
         for(int i=0;i<n;i++){
-            for(int j=0;j<isConnected[i].size();i++){
+            for(int j=0;j<isConnected[i].size();j++){
              if(isConnected[i][j]==1){
                    graph[i].push_back(j);
                 graph[j].push_back(i);
