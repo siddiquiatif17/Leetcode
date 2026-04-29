@@ -2,7 +2,7 @@ class Solution {
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         int n=prerequisites.size();
-        vector<int> indegree(numCourses,0);
+        vector<int> indegree(numCourses);
         vector<vector<int>> graph(numCourses);
         for(int i=0;i<n;i++){
             int u=prerequisites[i][0];
@@ -26,7 +26,7 @@ public:
             }
         }
         for(int i=0;i<numCourses;i++){
-            if(!indegree[i])return false;
+            if(indegree[i]!=0)return false;
         }
         return true;
     }
