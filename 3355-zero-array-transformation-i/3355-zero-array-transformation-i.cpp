@@ -11,7 +11,7 @@ public:
             if(end+1<n)diff[end+1]+=1;
         }
         for(int i=1;i<n;i++){
-            // if(nums[i]==0)continue;
+         
           diff[i]+=diff[i-1];
         }
         for(int i=0;i<n;i++){
