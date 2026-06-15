@@ -1,63 +1,42 @@
 class Solution {
 public:
-    int findCheapestPrice(int n,
-                          vector<vector<int>>& flights,
-                          int src,
-                          int dst,
-                          int k) {
-
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        int m=flights.size();
         vector<vector<pair<int,int>>> graph(n);
-
-        for(auto &f : flights){
-            graph[f[0]].push_back({f[1],f[2]});
+        for(int i=0;i<m;i++){
+            int u=flights[i][0];
+            int v=flights[i][1];
+            int cost=flights[i][2];
+            graph[u].push_back({v,cost});
         }
 
-        vector<vector<int>> dist(
-            n,
-            vector<int>(k+2,1e9)
-        );
+        vector<vector<int>> dist(n,vector<int>(k+2,INT_MAX));
+        dist[src][0]=0;
 
-        set<vector<int>> st;
-
-        dist[src][0] = 0;
-
-        st.insert({0,src,0});
+        set<pair<pair<int,int>,int>> st;
+        st.insert({{0,src},0});
 
         while(!st.empty()){
+            auto temp=*st.begin();
+            st.erase(temp);
+            int node=temp.first.second;
+            int cost=temp.first.first;
+            int stops=temp.second;
+            if(node==dst)return cost;
+            if(stops>k)continue;
 
-            auto cur = *st.begin();
-            st.erase(st.begin());
-
-            int cost  = cur[0];
-            int node  = cur[1];
-            int stops = cur[2];
-
-            if(node == dst)
-                return cost;
-
-            if(stops == k+1)
-                continue;
-
-            for(auto &it : graph[node]){
-
-                int neigh = it.first;
-                int wt    = it.second;
-
-                int newCost = cost + wt;
-
-                if(newCost < dist[neigh][stops+1]){
-
-                    dist[neigh][stops+1] = newCost;
-
-                    st.insert({
-                        newCost,
-                        neigh,
-                        stops+1
-                    });
+            for(auto neigh:graph[node]){
+                int neighNode=neigh.first;
+                int neighCost=neigh.second;
+                if(cost+neighCost<INT_MAX){
+                    if(cost+neighCost<dist[neighNode][stops+1]){
+                        dist[neighNode][stops+1]=cost+neighCost;
+                        st.insert({{dist[neighNode][stops+1],neighNode},stops+1});
+                    }
                 }
             }
         }
-
         return -1;
+        
     }
 };
