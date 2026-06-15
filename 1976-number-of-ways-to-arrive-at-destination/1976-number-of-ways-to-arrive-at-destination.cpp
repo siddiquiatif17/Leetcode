@@ -1,8 +1,8 @@
 class Solution {
 public:
+    int MOD=1e9+7;
     int countPaths(int n, vector<vector<int>>& roads) {
         int m=roads.size();
-             const int MOD = 1e9 + 7;
         vector<vector<pair<int,int>>> graph(n);
         for(int i=0;i<m;i++){
             int u=roads[i][0];
@@ -12,37 +12,35 @@ public:
             graph[v].push_back({u,time});
         }
         
-        set<pair<long long,int>> st;
-        st.insert({0,0});
-        vector<long long> dist(n,1e18);
+        vector<long long> dist(n,LLONG_MAX);
         dist[0]=0;
         vector<int> ways(n,0);
         ways[0]=1;
-        
 
+        set<pair<long long,int>> st;
+        st.insert({0,0});
         while(!st.empty()){
-            auto it=*st.begin();
-            st.erase(st.begin());
-            int node=it.second;
-            long long cost=it.first;
-            for(auto  it:graph[node]){
-                int neigh=it.first;
-                int neighCost=it.second;
-                long long newDist=cost+neighCost;
-                if(newDist<dist[neigh]){
-                    if(dist[neigh]!=1e18)
-                    st.erase({dist[neigh],neigh});
+            auto temp=*st.begin();
+            st.erase(temp);
+            long long time=temp.first;
+            int node=temp.second;
+            for(auto neigh:graph[node]){
+                int neighNode=neigh.first;
+                int neighDist=neigh.second;
+                if(time+neighDist<LLONG_MAX){
+                    if(time+neighDist<dist[neighNode]){
+                        st.erase({dist[neighNode],neighNode});
+                        dist[neighNode]=time+neighDist;
+                        st.insert({dist[neighNode],neighNode});
+                        ways[neighNode]=ways[node];
+                    }
+                   else if(time+neighDist==dist[neighNode]){
+                        ways[neighNode]=(ways[neighNode]+ways[node])%MOD;
+                    }
                     
-                ways[neigh]=ways[node];
-                    
-                dist[neigh]=newDist;
-                st.insert({dist[neigh],neigh});
-                }else if(dist[neigh]==newDist){
-                    ways[neigh] = (ways[neigh] + ways[node]) % MOD;
                 }
             }
         }
-        return ways[n-1];
-        
+        return ways[n-1]%MOD;
     }
 };
