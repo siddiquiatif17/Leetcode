@@ -24,6 +24,7 @@ public:
             st.erase(temp);
             long long time=temp.first;
             int node=temp.second;
+             if(time > dist[node]) continue;
             for(auto neigh:graph[node]){
                 int neighNode=neigh.first;
                 int neighDist=neigh.second;
