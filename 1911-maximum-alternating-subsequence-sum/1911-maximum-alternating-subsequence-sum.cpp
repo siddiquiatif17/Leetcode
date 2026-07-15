@@ -11,8 +11,13 @@ public:
     }
     long long maxAlternatingSum(vector<int>& nums) {
         int n=nums.size();
-        vector<vector<long long>> dp(n,vector<long long>(2,-1));
-        return sol(nums,0, 1,dp);
+        vector<vector<long long>> dp(n+1,vector<long long>(2,0));
+       
+        for(int i=n-1;i>=0;i--){
+            dp[i][1]=max(dp[i+1][1],(long long)nums[i]+dp[i+1][0]);
+            dp[i][0]=max(dp[i+1][0],-(long long)nums[i]+dp[i+1][1]);
+        }
+        return  dp[0][1];
         
     }
 };
