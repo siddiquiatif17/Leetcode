@@ -11,10 +11,8 @@ public:
             indegree[u]++;
         }
         queue<int> q;
-        for(int i=0;i<numCourses;i++){
-            if(indegree[i]==0)q.push(i);
-        }
-        // vector<int> topo;
+        for(int i=0;i<numCourses;i++)if(indegree[i]==0)q.push(i);
+
         while(!q.empty()){
             int node=q.front();
             q.pop();
@@ -23,9 +21,8 @@ public:
                 if(indegree[neigh]==0)q.push(neigh);
             }
         }
-        for(int i=0;i<numCourses;i++){
-            if(indegree[i]!=0)return false;
-        }
+
+        for(int i=0;i<numCourses;i++)if(indegree[i]!=0)return false;
         return true;
         
     }
