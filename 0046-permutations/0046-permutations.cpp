@@ -19,7 +19,7 @@ public:
     }
     vector<vector<int>> permute(vector<int>& nums) {
         vector<int> temp;
-        set<int> st;
+       set<int> st;
         sol(temp,nums,st);
         return ans;
     }
