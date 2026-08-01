@@ -8,10 +8,8 @@ public:
         int j=0;
         int ans=0;
         for(int i=0;i<n;i++){
-            // long long required=(i-j+1)*nums[i];
             sum+=nums[i];
-            long long available=sum+k;
-            while(available<1LL*(i-j+1)*nums[i]){
+            while(sum+k<1LL*(i-j+1)*nums[i]){
                 sum-=nums[j];
                 j++;
             }
