@@ -4,7 +4,7 @@ public:
         int r=redEdges.size();
         int b=blueEdges.size();
 
-        vector<vector<pair<int,bool>>> graph(n);
+        vector<vector<pair<int,int>>> graph(n);
         for(int i=0;i<r;i++){
             int u=redEdges[i][0];
             int v=redEdges[i][1];
