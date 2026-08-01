@@ -2,8 +2,8 @@ class Solution {
 public:
     int numberOfSubstrings(string s) {
         int n=s.size();
-        unordered_map<char,int> mpp;
-        for(int i=0;i<n;i++)mpp[s[i]]++;
+        // unordered_map<char,int> mpp;
+        // for(int i=0;i<n;i++)mpp[s[i]]++;
         int j=0;
         unordered_map<char,int> mpp2;
         int ans=0;
