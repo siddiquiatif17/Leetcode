@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int sol(string &s,int k,char ch){
+    int sol(string s,int k,char ch){
         int n=s.size();
         int j=0;
         int cnt=0;
@@ -17,6 +17,5 @@ public:
     }
     int maxConsecutiveAnswers(string answerKey, int k) {
         return max(sol(answerKey,k,'F'),sol(answerKey,k,'T'));
-        
     }
 };
