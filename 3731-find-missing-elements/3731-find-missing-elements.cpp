@@ -8,7 +8,7 @@ public:
         unordered_map<int,int> mpp;
         vector<int> ans;
         for(int i=0;i<n;i++)mpp[nums[i]]++;
-        for(int i=start;i<=end;i++){
+        for(int i=start+1;i<=end-1;i++){
             if(mpp.find(i)==mpp.end())ans.push_back(i);
         }
         sort(ans.begin(),ans.end());
