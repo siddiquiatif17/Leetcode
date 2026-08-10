@@ -7,7 +7,6 @@ public:
         int j=0;
         int boats=0;
         while(i>=j){
-            
             if(people[i]+people[j]<=limit){
                 boats++;
                 i--;
