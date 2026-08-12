@@ -5,17 +5,19 @@ public:
         vector<bool> removed(s.size(),false);
         for(int i=0;i<k;i++)removed[removable[i]]=true;
         string newString="";
-        for(int i=0;i<s.size();i++){
-            if(!removed[i])newString+=s[i];
-        }
-        int i=0;
         int j=0;
-        while(i<newString.size() && j<p.size()){
-            if(newString[i]==p[j]){
-                i++;
-                j++;
-            }else i++;
+        for(int i=0;i<s.size() && j<p.size();i++){
+            if(!removed[i] && s[i]==p[j])j++;
+           
         }
+        // int i=0;
+        // int j=0;
+        // while(i<newString.size() && j<p.size()){
+        //     if(newString[i]==p[j]){
+        //         i++;
+        //         j++;
+        //     }else i++;
+        // }
         return j==p.size();
     }
     int maximumRemovals(string s, string p, vector<int>& removable) {
