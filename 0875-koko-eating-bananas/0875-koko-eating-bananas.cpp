@@ -4,6 +4,7 @@ public:
         long long time=0;
         for(int i=0;i<piles.size();i++){
             time+=(piles[i]%k==0)?piles[i]/k:(piles[i]/k)+1;
+            if(time>h)return  false;
         }
         return time<=h;
     }
