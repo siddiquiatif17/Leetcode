@@ -18,11 +18,11 @@ public:
 
         int low=1;
         int high=position.back()-position.front();
-        int ans=INT_MIN;
+        int ans=0;
         while(low<=high){
             int mid=low+(high-low)/2;
             if(possible(mid,position,m)){
-                ans=max(ans,mid);
+                ans=mid;
                 low=mid+1;
             }else high=mid-1;
         }
