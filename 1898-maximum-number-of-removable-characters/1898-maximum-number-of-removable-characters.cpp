@@ -4,7 +4,7 @@ public:
         // unordered_map<int,int> mpp;
         vector<bool> removed(s.size(),false);
         for(int i=0;i<k;i++)removed[removable[i]]=true;
-        string newString="";
+        // string newString="";
         int j=0;
         for(int i=0;i<s.size() && j<p.size();i++){
             if(!removed[i] && s[i]==p[j])j++;
