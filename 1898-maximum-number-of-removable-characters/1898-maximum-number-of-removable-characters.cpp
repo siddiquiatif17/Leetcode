@@ -2,8 +2,8 @@ class Solution {
 public:
     bool possible(int k,string& s,string& p,vector<int>& removable){
         // unordered_map<int,int> mpp;
-        vector<bool> removed(s.size(),false);
-        for(int i=0;i<k;i++)removed[removable[i]]=true;
+        vector<int> removed(s.size(),0);
+        for(int i=0;i<k;i++)removed[removable[i]]=1;
         // string newString="";
         int j=0;
         for(int i=0;i<s.size() && j<p.size();i++){
