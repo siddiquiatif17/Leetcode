@@ -3,7 +3,7 @@ public:
     bool possible(int k,vector<int>& nums,int maxOperations){
         int count=0;
         int n=nums.size();
-        for(int i=n-1;i>=0;i--){
+        for(int i=0;i<n;i++){
           count+=(nums[i]-1)/k;
           if(count>maxOperations)return false;
         }
