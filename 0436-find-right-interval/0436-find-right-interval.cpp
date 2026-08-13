@@ -1,8 +1,6 @@
 class Solution {
 public:
     int sol(vector<vector<int>>& intervals,int val,unordered_map<int,int>& mpp){
-       
-        
         int low=0;
         int high=intervals.size()-1;
         int ans=-1;
