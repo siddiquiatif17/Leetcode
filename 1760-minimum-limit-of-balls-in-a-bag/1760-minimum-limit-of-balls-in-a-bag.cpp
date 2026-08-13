@@ -11,7 +11,7 @@ public:
     }
     int minimumSize(vector<int>& nums, int maxOperations) {
         int n=nums.size();
-        sort(nums.begin(),nums.end());
+      
 
         int low=1;
         int high=*max_element(nums.begin(),nums.end());
