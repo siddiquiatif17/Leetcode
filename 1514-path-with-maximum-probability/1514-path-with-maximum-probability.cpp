@@ -19,6 +19,9 @@ public:
             st.erase(*st.begin());
             int node=temp.second;
             double wt=temp.first;
+
+            if(node == end)
+    return wt;
             for(auto neigh:graph[node]){
                 int neighNode=neigh.first;
                 double neighWt=neigh.second;
