@@ -1,72 +1,39 @@
 class Solution {
 public:
+    int dx[4]={0,-1,0,1};
+    int dy[4]={-1,0,1,0};
     int minimumEffortPath(vector<vector<int>>& heights) {
-
         int n=heights.size();
         int m=heights[0].size();
 
-        vector<vector<int>> dist(
-            n,
-            vector<int>(m,1e9)
-        );
-
         set<pair<int,pair<int,int>>> st;
-
-        dist[0][0]=0;
         st.insert({0,{0,0}});
-
-        int dx[4]={-1,1,0,0};
-        int dy[4]={0,0,-1,1};
+        vector<vector<int>> dist(n,vector<int>(m,INT_MAX));
+         dist[0][0]=0;
 
         while(!st.empty()){
-
-            auto it=*st.begin();
+            auto temp=*st.begin();
             st.erase(st.begin());
-
-            int diff=it.first;
-            int row=it.second.first;
-            int col=it.second.second;
-
+            int wt=temp.first;
+            int row=temp.second.first;
+            int col=temp.second.second;
+            if(row==n-1 && col==m-1)return wt;
             for(int i=0;i<4;i++){
-
                 int newRow=row+dx[i];
                 int newCol=col+dy[i];
-
-                if(newRow>=0 && newRow<n &&
-                   newCol>=0 && newCol<m){
-
-                    int wt=
-                    abs(
-                        heights[newRow][newCol]
-                        -
-                        heights[row][col]
-                    );
-
-                    int newEffort=max(diff,wt);
-
-                    if(newEffort<
-                       dist[newRow][newCol]){
-
-                        if(dist[newRow][newCol]!=1e9){
-                            st.erase({
-                                dist[newRow][newCol],
-                                {newRow,newCol}
-                            });
-                        }
-
-                        dist[newRow][newCol]
-                        =
-                        newEffort;
-
-                        st.insert({
-                            newEffort,
-                            {newRow,newCol}
-                        });
+                
+                if(newRow>=0 && newRow<n &&  newCol>=0 && newCol<m){
+                       int edgeEffort=abs(heights[row][col]-heights[newRow][newCol]);
+                       int newDist=max(wt,edgeEffort);
+                   
+                    if(newDist<dist[newRow][newCol]){
+                        dist[newRow][newCol]=newDist;
+                        st.insert({newDist,{newRow,newCol}});
                     }
                 }
             }
         }
 
-        return dist[n-1][m-1];
+        return 0;
     }
 };
