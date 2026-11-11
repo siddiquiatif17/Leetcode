@@ -21,8 +21,8 @@ public:
         need1-=common;
         need2-=common;
 
-        ans+=1LL*need1*min(cost1,costBoth);
-        ans+=1LL*need2*min(cost2,costBoth);
+     if(need1>0)   ans+=1LL*need1*min(cost1,costBoth);
+       else  ans+=1LL*need2*min(cost2,costBoth);
         return ans;
 
 
